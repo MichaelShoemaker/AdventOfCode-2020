@@ -8,7 +8,6 @@ mult = num_lines * 7
 
 slopes = [1,3,5,7,1]
 treeCounts = []
-skip = 0
 for n,i in enumerate(slopes):
     trees = 0
     with open(r'input.txt','r') as infile:
