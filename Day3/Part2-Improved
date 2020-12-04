@@ -1,0 +1,41 @@
+import math
+
+def findTrees(file, coords):
+    #To hold result for each element in coords
+    results = []
+    with open(file,'r') as infile:
+        #Turn the file into a list of strings
+        grid = [i.strip() for i in infile.readlines()]
+        #Get the number of lines
+        limit = len(grid)
+        #Get the length of the lines
+        lineLen = len(grid[0])
+        #For each set of coordinates
+        for c in coords:
+            trees = 0
+            x = c[0]
+            y = c[1]
+            #Make sure it doesn't go over the line count
+            #This part confused me the lines are actually
+            #The y index and along the lines is the x plane
+            #So x goes in the second bracket below
+            while y < limit:
+                if grid[y][x%lineLen]=="#":
+                    trees+=1
+                x+=c[0]
+                y+=c[1]
+            results.append(trees)
+    print(results)
+    print(math.prod(results))  
+
+
+
+coords = [
+    (1,1),
+    (3,1),
+    (5,1),
+    (7,1),
+    (1,2)]
+
+if __name__ == "__main__":
+    findTrees('input.txt',coords)
