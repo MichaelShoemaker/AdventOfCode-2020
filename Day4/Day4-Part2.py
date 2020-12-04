@@ -13,7 +13,7 @@ def checkPasses(x):
     forcheck = dict(s.split(':') for s in l)
     #Check for all required fields
     if all (k in forcheck for k in ('byr','iyr','eyr','hgt','hcl','ecl','pid')):
-        if 2020 >= int(forcheck['byr']) >= 1920 \
+        if 2002 >= int(forcheck['byr']) >= 1920 \
            and len(forcheck['byr']) == 4 \
            and 2020 >= int(forcheck['iyr']) >= 2010 \
            and len(forcheck['iyr']) == 4 \
