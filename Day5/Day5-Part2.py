@@ -1,22 +1,9 @@
-#Start by making a list of the rows
-def makeRows():
-    ls = []
-    for i in range(0,128):
-        ls.append(i)
-    return ls
-
-def makeCols():
-    ls = []
-    for i in range(0,8):
-        ls.append(i)
-    return ls
-
 allseats = []
 with open('input.txt','r') as infile:
     for line in infile:
         index = 0
-        seats = makeRows()
-        cols = makeCols()
+        seats = [i for i in range(0,128)]
+        cols = [i for i in range(0,8)]
         seatMark = 0
         colMark = 0
         #Find the row
