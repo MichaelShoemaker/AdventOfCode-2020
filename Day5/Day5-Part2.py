@@ -1,0 +1,51 @@
+#Start by making a list of the rows
+def makeRows():
+    ls = []
+    for i in range(0,128):
+        ls.append(i)
+    return ls
+
+def makeCols():
+    ls = []
+    for i in range(0,8):
+        ls.append(i)
+    return ls
+
+allseats = []
+with open('input.txt','r') as infile:
+    for line in infile:
+        index = 0
+        seats = makeRows()
+        cols = makeCols()
+        seatMark = 0
+        colMark = 0
+        #Find the row
+        while index < 7:
+            mark = int(len(seats)/2)
+            if line[index] == 'F':
+                seats = seats[:mark]
+            elif line[index] == 'B':
+                seats = seats[mark:]
+            index+=1
+        seatMark = seats[0]
+        while index < 10:
+            mark = int(len(cols)/2)
+            if line[index]=="R":
+                cols = cols[mark:]
+                #print(cols)
+            elif line[index] == "L":
+                cols = cols[:mark]
+                #print(cols)
+            index+=1
+        colMark = cols[0]
+        allseats.append(seatMark * 8 + colMark)
+
+
+first = min(allseats)
+last = max(allseats)
+
+for i in range(first,last):
+    if i not in allseats:
+        print("Seat {} is missing".format(i))
+             
+        
