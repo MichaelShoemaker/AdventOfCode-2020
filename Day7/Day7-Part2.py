@@ -57,20 +57,22 @@ while True:
             if 'no other bags' in line[1]:
                 #state = re.findall('[a-z ]+',val)[1].strip()
                 child = Node(state = node.state, number = 1, parent = node)
-                
+                print(child.state)
                 tally.append(child)
             else:
                 for val in line[1].split(','):
+                    print(line[1].split(','))
                     child = Node(state = re.findall('[a-z ]+',val)[1].strip(), number = int(re.findall('\d+',val)[0]), parent = node)
-                    #print(child.state)
+                    print(len(front))
+                    print(front)
                     front.append(child)
 
 #Test should be 32
-all_count = 0
-for i in tally:
-    all_count += rollup(i)
-print(all_count)
-for i in tally:
-    node_trace(i)
+##all_count = 0
+##for i in tally:
+##    all_count += rollup(i)
+##print(all_count)
+##for i in tally:
+##    node_trace(i)
            
                              
