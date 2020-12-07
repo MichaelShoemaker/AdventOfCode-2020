@@ -1,23 +1,29 @@
 import re
 
+total = 1
+place_holder = 0
+
 class Node:
     def __init__(self, parent = None, state=None, number = None):
         self.parent = parent
         self.state = state
         self.number = number
         self.nextval = None
+    def id(self):
+        print(f"Parent is: {self.parent}. State is: {self.state}. Number is: {self.number}. Next node is: {self.nextval}")
 
 def rollup(x):
-    my_counts = 1
+    my_counts = 0
     while x.parent:
-        my_counts = my_counts * x.number + x.number
+        #print(f"for node {x.state} my count {my_counts} + ({x.number} * {x.parent.number} + {x.parent.number})")
+        my_counts = my_counts + (x.number * x.parent.number + x.parent.number)
         x = x.parent
     return my_counts   
 
 def node_trace(x):
     line = 0
     while x.parent:
-        print(f"Node {line} has name {x.state} and value {x.number}.")
+        #print(f"Node {line} has name {x.state} and value {x.number}.")
         line+=1
         x = x.parent
         
@@ -49,19 +55,22 @@ while True:
         line = line.split('contain')
         if node.state == line[0].strip():
             if 'no other bags' in line[1]:
-                child = Node(state = re.findall('[a-z ]+',val)[1].strip(), number = 1, parent = node)
+                #state = re.findall('[a-z ]+',val)[1].strip()
+                child = Node(state = node.state, number = 1, parent = node)
+                
                 tally.append(child)
             else:
                 for val in line[1].split(','):
                     child = Node(state = re.findall('[a-z ]+',val)[1].strip(), number = int(re.findall('\d+',val)[0]), parent = node)
-                    #print(f"Adding child {child.state} to frontier")
+                    #print(child.state)
                     front.append(child)
 
-
+#Test should be 32
 all_count = 0
 for i in tally:
     all_count += rollup(i)
-
+print(all_count)
 for i in tally:
     node_trace(i)
-            
+           
+                             
