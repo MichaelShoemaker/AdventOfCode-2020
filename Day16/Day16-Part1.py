@@ -13,7 +13,7 @@ def make_rules(file) -> set:
         start+=2
     return badseats
 
-def make_tickets(file, rules) -> set:
+def make_tickets(file, rules: set) -> list:
     tickets = []
     bad = []
     raw = open(file,'r').read().splitlines()
