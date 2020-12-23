@@ -6,7 +6,7 @@ def make_cups(file):
     return [int(c) for c in cups if c != '\n']
 
 
-def play(cups: list, turns: int):
+def play(cups: list, turns: int) -> list:
     counter = 0
     for x in range(0,turns):
 ##        print(f"-- move {x+1} --")
